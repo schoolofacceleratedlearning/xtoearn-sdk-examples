@@ -5,6 +5,7 @@ import { APP_KEY_PREFIX, getConfig } from "./config";
 export class Wallet {
   wallet;
   network;
+  accountId;
   constructor(network = "testnet") {
     this.network = network;
   }
@@ -14,6 +15,7 @@ export class Wallet {
     const keyStore = new keyStores.BrowserLocalStorageKeyStore();
     const nearConnection = await connect({ keyStore, ...nearConfig });
     this.wallet = new WalletConnection(nearConnection, APP_KEY_PREFIX);
+    this.accountId = this.wallet.getAccountId();
     return this.wallet.isSignedIn();
   }
 

@@ -19,6 +19,6 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "near-api-js": "^1.1.0",
-    "xtoearn-near-sdk": "^2.1.2"
+    "xtoearn-near-sdk": "^2.2.2"
   }
 }

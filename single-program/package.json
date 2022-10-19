@@ -11,10 +11,14 @@
   "license": "ISC",
   "devDependencies": {
     "buffer": "^6.0.3",
+    "os-browserify": "^0.3.0",
     "parcel": "^2.7.0",
+    "path-browserify": "^1.0.1",
     "process": "^0.11.10"
   },
   "dependencies": {
-    "near-api-js": "^1.1.0"
+    "dotenv": "^16.0.3",
+    "near-api-js": "^1.1.0",
+    "xtoearn-near-sdk": "^2.1.2"
   }
 }

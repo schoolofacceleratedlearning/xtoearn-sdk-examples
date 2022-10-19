@@ -1,5 +1,8 @@
+import give_rewards from "xtoearn-near-sdk";
 import { Wallet } from "./near-wallet";
+import dotenv from "dotenv";
 
+dotenv.config();
 const wallet = new Wallet(process.env.NEAR_ENV);
 
 window.onload = async () => {
@@ -28,3 +31,22 @@ function signedOutFlow() {
 async function signedInFlow() {
   document.querySelector(".sign-out").style.display = "block";
 }
+
+document.querySelector("#like-video").onclick = async () => {
+  const args = {
+    reward_name: "video_likes",
+    program_name: "pe",
+    user_wallet: wallet.accountId,
+    program_owner: process.env.ACCOUNT_ID,
+  };
+
+  const response = await give_rewards(
+    process.env.CONTRACT_ID,
+    process.env.ACCOUNT_ID,
+    process.env.PRIVATE_KEY,
+    process.env.METHOD_NAME,
+    args,
+    process.env.ATTACHED_DEPOSIT
+  );
+  console.log(response);
+};

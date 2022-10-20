@@ -29,14 +29,56 @@ async function signedInFlow() {
   document.querySelector(".sign-out").style.display = "block";
 }
 
-document.querySelector("#like-video").onclick = async () => {
-  console.log("Start Loading...");
-  const transaction = await giveReward(wallet.accountId);
-  console.log("End Loading...");
-  if ("SuccessValue" in transaction?.status) {
-    // show alert
-    console.log("Reward paid out successfully");
-    return;
+const hideLoadingAndShowAlert = ({
+  className,
+  message,
+  loadingElement,
+  alertElement,
+  alertTextElement,
+}) => {
+  if (loadingElement && alertElement) {
+    loadingElement.style.display = "none";
+    alertElement.style.display = "flex";
   }
-  console.log("Reward paid out failed");
+  if (alertElement && alertTextElement) {
+    alertElement.classList.add(className);
+    alertTextElement.innerText = message;
+  }
+};
+document.querySelector("#like-video").onclick = async () => {
+  const loadingElement = document.querySelector("#loading");
+  const alertElement = document.querySelector("#alert");
+  const alertTextElement = document.querySelector("#alert-content");
+  try {
+    loadingElement.style.display = "block";
+    const transaction = await giveReward(wallet.accountId);
+    hideLoadingAndShowAlert({ loadingElement, alertElement });
+    if ("SuccessValue" in transaction?.status) {
+      hideLoadingAndShowAlert({
+        className: "alert-success",
+        message: "Reward paid out successfully!",
+        alertTextElement,
+        alertElement,
+      });
+      return;
+    }
+    hideLoadingAndShowAlert({
+      className: "alert-danger",
+      message: "Failed to pay reward!",
+      alertTextElement,
+      alertElement,
+    });
+  } catch (err) {
+    hideLoadingAndShowAlert({
+      loadingElement,
+      alertElement,
+      className: "alert-danger",
+      message: err.message,
+      alertTextElement,
+    });
+  }
+};
+
+document.querySelector("#alert-close").onclick = () => {
+  document.querySelector("#alert").style.display = "none";
 };

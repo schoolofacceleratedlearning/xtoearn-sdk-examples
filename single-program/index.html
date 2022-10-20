@@ -19,6 +19,31 @@
   </head>
   <body style="background: #eef2fe; font-family: 'Arvo', serif">
     <div class="container">
+      <div
+        id="alert"
+        style="
+          position: absolute;
+          right: 20;
+          margin-top: 10px;
+          display: none;
+          justify-content: space-between;
+          align-items: center;
+          width: 30%;
+        "
+        class="alert"
+        role="alert"
+      >
+        <span id="alert-content"></span>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+          id="alert-close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <h1>Single Program Example!</h1>
 
       <div class="sign-out" style="display: none">
@@ -28,16 +53,34 @@
         <br />
         <br />
         <br />
-        <button id="like-video" class="btn btn-warning">Like Video</button>
+        <button
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+          "
+          id="like-video"
+          class="btn btn-warning"
+        >
+          <span>Like Video</span>
+          <div
+            id="loading"
+            style="display: none"
+            class="spinner-border text-light spinner-border-sm"
+            role="status"
+          >
+            <span class="sr-only">Loading...</span>
+          </div>
+        </button>
       </div>
 
       <div class="sign-in" style="display: none">
         <p>You'll need to sign in to interact with the xtoearn contract:</p>
-        <button class="btn btn-primary" style="background-color: #0072ce">
-          Sign In
-        </button>
+        <button class="btn btn-primary">Sign In</button>
       </div>
     </div>
+
     <script src="./index.js" type="module"></script>
   </body>
 </html>

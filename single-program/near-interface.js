@@ -14,23 +14,19 @@ async function getTransactionDetails(transactionHashes) {
 }
 
 export default async function giveReward(userAccountId) {
-  try {
-    const args = {
-      reward_name: "video_likes",
-      program_name: "pe",
-      user_wallet: userAccountId,
-      program_owner: process.env.ACCOUNT_ID,
-      private_key: process.env.PRIVATE_KEY,
-    };
-    const reward = await give_rewards(
-      process.env.CONTRACT_ID,
-      process.env.ACCOUNT_ID,
-      process.env.METHOD_NAME,
-      args,
-      process.env.ATTACHED_DEPOSIT
-    );
-    return getTransactionDetails(reward.transaction.id);
-  } catch (error) {
-    console.log(error);
-  }
+  const args = {
+    reward_name: "video_likes",
+    program_name: "pe",
+    user_wallet: userAccountId,
+    program_owner: process.env.ACCOUNT_ID,
+    private_key: process.env.PRIVATE_KEY,
+  };
+  const reward = await give_rewards(
+    process.env.CONTRACT_ID,
+    process.env.ACCOUNT_ID,
+    process.env.METHOD_NAME,
+    args,
+    process.env.ATTACHED_DEPOSIT
+  );
+  return getTransactionDetails(reward.transaction.id);
 }

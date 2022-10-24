@@ -1,6 +1,6 @@
 import { Wallet } from "./near-wallet";
 import giveReward from "./near-interface";
-const wallet = new Wallet(process.env.NEAR_ENV);
+const wallet = new Wallet(process.env.NODE_ENV);
 
 window.onload = async () => {
   const isSignedIn = await wallet.init();

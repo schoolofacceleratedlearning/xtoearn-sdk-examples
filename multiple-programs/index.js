@@ -45,13 +45,28 @@ const hideLoadingAndShowAlert = ({
     alertTextElement.innerText = message;
   }
 };
-document.querySelector("#like-video").onclick = async () => {
+
+document.querySelector("#submit").onclick = async () => {
   const loadingElement = document.querySelector("#loading");
   const alertElement = document.querySelector("#alert");
   const alertTextElement = document.querySelector("#alert-content");
+  const programName = document.querySelector("#program-name").value.trim();
+  const rewardName = document.querySelector("#reward-name").value.trim();
   try {
+    if (!programName || !rewardName) {
+      alertTextElement.innerText = `Please provide ${
+        !programName ? "program name" : "reward name"
+      }`;
+      alertElement.classList.add("alert-danger");
+      alertElement.style.display = "flex";
+      return;
+    }
     loadingElement.style.display = "block";
-    const transaction = await giveReward(wallet.accountId);
+    const transaction = await giveReward(
+      wallet.accountId,
+      programName,
+      rewardName
+    );
     hideLoadingAndShowAlert({ loadingElement, alertElement });
     if ("SuccessValue" in transaction?.status) {
       hideLoadingAndShowAlert({

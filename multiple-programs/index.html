@@ -53,26 +53,41 @@
         <br />
         <br />
         <br />
-        <button
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-          "
-          id="like-video"
-          class="btn btn-warning"
-        >
-          <span>Like Video</span>
-          <div
-            id="loading"
-            style="display: none"
-            class="spinner-border text-light spinner-border-sm"
-            role="status"
+        <div style="display: flex; gap: 5px">
+          <input
+            id="program-name"
+            type="text"
+            placeholder="program name"
+            required
+          />
+          <input
+            id="reward-name"
+            type="text"
+            placeholder="reward name"
+            required
+          />
+          <button
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 5px;
+            "
+            id="submit"
+            type="submit"
+            class="btn btn-warning"
           >
-            <span class="sr-only">Loading...</span>
-          </div>
-        </button>
+            <span>Submit</span>
+            <div
+              id="loading"
+              style="display: none"
+              class="spinner-border text-light spinner-border-sm"
+              role="status"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+          </button>
+        </div>
       </div>
 
       <div class="sign-in" style="display: none">

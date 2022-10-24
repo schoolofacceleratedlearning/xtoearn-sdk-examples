@@ -13,10 +13,15 @@ async function getTransactionDetails(transactionHashes) {
   return transaction;
 }
 
-export default async function giveReward(userAccountId) {
+export default async function giveReward(
+  userAccountId,
+  programName,
+  rewardName
+) {
+  console.log({ userAccountId, programName, rewardName });
   const args = {
-    reward_name: "commits",
-    program_name: "pm",
+    reward_name: rewardName,
+    program_name: programName,
     user_wallet: userAccountId,
     program_owner: process.env.ACCOUNT_ID,
     credentials_dir: process.env.CREDENTIALS_DIR,

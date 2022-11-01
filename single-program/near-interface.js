@@ -15,7 +15,9 @@ async function getTransactionDetails(transactionHashes) {
 
 export default async function giveReward(userAccountId) {
   const args = {
+    // add reward name here
     reward_name: "video_like",
+    // add program name here
     program_name: "pd",
     user_wallet: userAccountId,
     program_owner: process.env.ACCOUNT_ID,
